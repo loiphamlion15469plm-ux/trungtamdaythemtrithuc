@@ -1,0 +1,1724 @@
+/* 1. Kéo font xịn từ Google về (Để ở dòng 1) */
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    background-color: #fffaf0;
+    /* 2. ÉP TOÀN BỘ WEB DÙNG FONT MỚI */
+    font-family: 'Be Vietnam Pro', sans-serif !important;
+}
+
+
+
+/* --- THANH MENU BÓNG BẨY --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Đổi chữ Trí Thức thành màu Cam */
+.navbar .logo h1 {
+    font-size: 26px;
+    color: var(--dark-navy);
+    font-weight: 900;
+}
+
+.navbar .logo span {
+    color: var(--primary-orange);
+}
+
+/* Chữ cam nổi bật */
+
+/* Chỉnh Menu chữ in hoa, đậm và nổi bật hơn */
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: var(--dark-navy);
+    font-weight: 700;
+    /* Chữ đậm hơn */
+    font-size: 15px;
+    text-transform: uppercase;
+    /* Viết hoa nhìn chuyên nghiệp */
+    transition: 0.3s;
+}
+
+.menu ul li a:hover,
+.menu ul li a.active {
+    color: var(--primary-orange);
+}
+
+/* Nút đăng nhập đồng bộ màu Cam Gradient */
+.btn-login {
+    padding: 10px 25px;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(249, 115, 22, 0.5);
+}
+
+/* --- ĐÂY LÀ KHUNG BANNER NÈ (SIZE SIÊU TO, TRÀN VIỀN SANG TRỌNG) --- */
+.notice-board-section {
+    width: 96%;
+    max-width: 1350px;
+    /* Giữ nguyên độ to bự hoành tráng */
+    margin: 60px auto;
+    padding: 15px;
+    /* MA THUẬT Ở ĐÂY: Thu nhỏ khoảng trống thừa để ảnh bung lụa */
+    border-radius: 30px;
+    /* Bo góc mềm mại hơn */
+    background: linear-gradient(to bottom, #8fd3f4 0%, #84fab0 100%);
+    box-shadow: 0 20px 50px rgba(0, 150, 136, 0.2);
+    /* Bóng đổ mượt mà */
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 4px solid rgba(255, 255, 255, 0.6);
+    /* Thêm viền trắng mờ kiểu kính (Glassmorphism) cực sang */
+}
+
+/* Ép khung chứa ảnh bên trong nổi bật lên và bo góc khớp với ngoài */
+.notice-board-container {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    /* Kéo ảnh nổi lên trên cùng, đè lên mấy đám mây/núi trang trí nền */
+    border-radius: 20px;
+    /* Bo góc cho mượt */
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    /* Tạo chiều sâu 3D cho ảnh */
+}
+
+/* Đảm bảo ảnh giãn đều và đẹp */
+.notice-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* --- VẼ 3 LỚP ĐỒI NÚI CHẬP CHÙNG BẰNG CSS --- */
+.decor-mountain {
+    position: absolute;
+    border-radius: 50%;
+    /* Bo tròn tạo hình ngọn đồi */
+    z-index: 1;
+    /* Nằm dưới banner */
+}
+
+.mountain-1 {
+    width: 70%;
+    height: 300px;
+    background-color: #66bb6a;
+    /* Xanh lá đậm */
+    bottom: -150px;
+    left: -10%;
+}
+
+.mountain-2 {
+    width: 65%;
+    height: 250px;
+    background-color: #81c784;
+    /* Xanh lá nhạt hơn */
+    bottom: -120px;
+    right: -15%;
+}
+
+.mountain-3 {
+    width: 50%;
+    height: 200px;
+    background-color: #aed581;
+    /* Xanh non ngả vàng */
+    bottom: -100px;
+    left: 25%;
+}
+
+/* --- ICON CÂY CỐI & MÂY TRỜI (LƠ LỬNG) --- */
+.decor-icon {
+    position: absolute;
+    font-size: 45px;
+    z-index: 2;
+    filter: drop-shadow(2px 5px 4px rgba(0, 0, 0, 0.2));
+}
+
+.tree-left {
+    bottom: 20px;
+    left: 20px;
+    font-size: 60px;
+}
+
+.tree-right {
+    bottom: 30px;
+    right: 25px;
+    font-size: 50px;
+}
+
+.cloud-1 {
+    top: 20px;
+    left: 10%;
+    font-size: 50px;
+    opacity: 0.8;
+    animation: float 6s infinite alternate ease-in-out;
+}
+
+.cloud-2 {
+    top: 40px;
+    right: 15%;
+    font-size: 65px;
+    opacity: 0.7;
+    animation: float 8s infinite alternate-reverse ease-in-out;
+}
+
+/* Hiệu ứng mây bay bồng bềnh */
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+
+    100% {
+        transform: translateY(-15px) translateX(20px);
+    }
+}
+
+/* --- KHUNG BANNER CHÍNH (NỔI BẬT TRÊN NỀN NÚI) --- */
+.notice-board-container {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    /* Kéo ảnh trồi lên trên đồi núi và cây cối */
+    display: grid;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border: 4px solid #ffffff;
+    /* Bo viền trắng tinh tế để tách biệt ảnh với nền thiên nhiên */
+}
+
+.notice-image {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.notice-image.active {
+    opacity: 1;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 15;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: #f97316;
+    width: 35px;
+    border-radius: 10px;
+}
+
+/* --- TỐI ƯU MOBILE --- */
+@media (max-width: 768px) {
+    .notice-board-section {
+        width: 95%;
+        padding: 30px 15px 50px 15px;
+        border-radius: 25px;
+    }
+
+    .mountain-1 {
+        height: 150px;
+        bottom: -70px;
+    }
+
+    .mountain-2 {
+        height: 120px;
+        bottom: -60px;
+    }
+
+    .mountain-3 {
+        height: 100px;
+        bottom: -50px;
+    }
+
+    .decor-icon {
+        font-size: 30px;
+    }
+
+    .tree-left {
+        font-size: 35px;
+        left: 5px;
+        bottom: 5px;
+    }
+
+    .tree-right {
+        font-size: 30px;
+        right: 5px;
+        bottom: 10px;
+    }
+
+    .notice-image {
+        aspect-ratio: 16 / 7.5;
+    }
+
+    .slider-dots {
+        bottom: 15px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .dot.active {
+        width: 25px;
+    }
+}
+
+/* --- 4. KHU VỰC KHÓA HỌC (SIÊU TO KHỔNG LỒ & RÕ RÀNG) --- */
+.courses-section {
+    width: 100%;
+    padding: 80px 5%;
+    /* Nới rộng khoảng cách trên dưới cho thoáng web */
+    background-color: var(--light-bg);
+}
+
+.courses-header {
+    text-align: center;
+    margin: 0 auto 50px auto;
+    /* Căn giữa cái khung và đẩy các thẻ ở dưới ra xa 50px */
+    padding: 25px 50px;
+    /* Tạo khoảng trống để chữ không bị dính sát vào viền */
+    border: 3px solid #f97316;
+    /* Viền màu cam rực rỡ */
+    border-radius: 30px;
+    /* Bo tròn 4 góc mềm mại */
+    width: fit-content;
+    /* Ép cái khung co lại ôm vừa khít đúng chiều dài của dòng chữ */
+    background-color: #ffffff;
+    /* Nền trắng giúp nổi bật chữ bên trong */
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.15);
+    /* Đổ một lớp bóng cam nhẹ nhàng phía sau khung */
+}
+
+.courses-container {
+    max-width: 1500px;
+    /* Ma thuật 1: Mở rộng khung chứa hết cỡ để 5 thẻ có chỗ thở */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    /* Tăng khoảng cách giữa các thẻ */
+    flex-wrap: wrap;
+}
+
+.course-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    flex: 1 1 260px;
+    /* Ma thuật 2: Ép mỗi thẻ phải to ít nhất 260px */
+    max-width: 350px;
+    /* Giới hạn độ to tối đa */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid transparent;
+}
+
+.course-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15);
+    border: 2px solid var(--primary-orange);
+}
+
+.course-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Nâng chiều cao ảnh cho cân đối */
+.course-content {
+    padding: 30px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.course-content h3 {
+    color: var(--dark-navy);
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+/* Ma thuật 3: Ép giá tiền nằm thẳng 1 hàng, chữ to rõ */
+.price {
+    font-weight: 800;
+    font-size: 20px;
+    color: #e63946;
+    margin-bottom: 15px;
+    white-space: nowrap;
+}
+
+.status {
+    font-size: 15px;
+    color: var(--text-gray);
+    margin-bottom: 25px;
+}
+
+.available {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* Nút bấm cũng được bơm to lên cho dễ click */
+.btn-register {
+    margin-top: auto;
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-orange);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-register:hover {
+    background: #ea580c;
+    transform: scale(1.05);
+}
+
+
+
+.course-card:hover {
+    transform: translateY(-10px);
+    /* Nảy lên khi rê chuột */
+    box-shadow: 0 15px 30px rgba(230, 126, 34, 0.2);
+    /* Bóng đổ màu cam rực rỡ */
+    border: 2px solid #ff7a00;
+    /* Viền cam xuất hiện khi hover */
+}
+
+/* --- XỬ LÝ ẢNH SẮC NÉT --- */
+.course-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    /* Lệnh ma thuật giúp ảnh luôn sắc nét, không bao giờ bị méo */
+    border-bottom: 4px solid #ff7a00;
+    /* Đường viền cam phân cách ảnh và chữ */
+}
+
+/* --- PHẦN NỘI DUNG CHỮ BÊN DƯỚI --- */
+.course-content {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.course-content h3 {
+    color: #d35400;
+    /* Màu cam đậm sặc sỡ */
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.course-content .price {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.course-content .status {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #7f8c8d;
+}
+
+.course-content .available {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* --- NÚT BẤM MÀU CAM RỰC RỠ --- */
+.btn-register {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #ff7a00, #ff5200);
+    /* Chuyển sắc cam chuẩn mẫu */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    /* Đẩy nút xuống sát đáy */
+}
+
+.btn-register:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 122, 0, 0.4);
+}
+
+/* Hiệu ứng nảy lên siêu mượt khi rê chuột */
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(41, 128, 185, 0.2);
+    border-color: #3498db;
+}
+
+.course-card h3 {
+    color: #2980b9;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.course-card .price {
+    font-weight: bold;
+    font-size: 18px;
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
+.course-card .status {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #7f8c8d;
+}
+
+.course-card .available {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.course-card .full {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-register:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+    /* Phình to nhẹ nút bấm */
+}
+
+.btn-register.disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- CSS CHO POPUP ĐĂNG KÝ --- */
+.modal {
+    display: none;
+    /* Ẩn đi khi chưa bấm nút */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 400px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #7f8c8d;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    color: #e74c3c;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.form-group input[readonly] {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    cursor: not-allowed;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #2ecc71;
+}
+
+/* Lớp phủ sau lưng: Đen mờ + Hiệu ứng kính Blur (Glassmorphism) */
+.custom-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(6px);
+    /* Làm mờ phông nền web phía sau */
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hộp thông báo xịn sò */
+.premium-modal {
+    background: linear-gradient(to bottom right, #ffffff, #f8fafc);
+    padding: 40px 30px;
+    border-radius: 24px;
+    /* Bo góc tròn trịa hơn */
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    /* Bóng đổ 3D */
+    max-width: 400px;
+    width: 90%;
+    /* Hiệu ứng nảy lên như lò xo cực mượt */
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Trải nghiệm Icon xanh lấp lánh */
+.premium-icon {
+    width: 80px;
+    height: 80px;
+    background: #d1fae5;
+    color: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+    /* Ánh sáng tỏa ra từ icon */
+}
+
+.premium-icon svg {
+    width: 45px;
+    height: 45px;
+}
+
+/* Font chữ chuyên nghiệp */
+.premium-title {
+    color: #1e293b;
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.premium-text {
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Nút bấm chuyển màu (Gradient) */
+.btn-premium {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.btn-premium:hover {
+    transform: translateY(-3px);
+    /* Đưa chuột vào nút sẽ tự động nhô lên */
+    box-shadow: 0 12px 25px rgba(16, 185, 129, 0.5);
+}
+
+/* --- BỘ MÀU CHỦ ĐẠO CAM - TRẮNG --- */
+:root {
+    --primary-orange: #f97316;
+    /* Cam rực rỡ */
+    --dark-navy: #1e3a8a;
+    /* Xanh đen */
+    --light-bg: #f8fafc;
+}
+
+.text-orange {
+    color: var(--primary-orange);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    color: var(--dark-navy);
+    margin-bottom: 40px;
+    font-weight: 800;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: #64748b;
+    margin-top: -30px;
+    margin-bottom: 40px;
+}
+
+/* =========================================
+   ÉP SÓNG CAM & BO TRÒN 4 GÓC MỀM MẠI
+   ========================================= */
+.wave-divider {
+    width: 100vw !important;
+    max-width: none !important;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+
+    /* Lệnh bo tròn 4 góc (ông có thể tăng giảm số 30px này) */
+    border-radius: 80px !important;
+}
+
+/* --- MỤC TIÊU 2: KHÓA HỌC DÀNH CHO AI --- */
+.target-audience {
+    padding: 60px 20px;
+    background-color: white;
+}
+
+.audience-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Cho di động */
+}
+
+.audience-left {
+    flex: 1;
+    position: relative;
+    min-width: 300px;
+}
+
+.audience-img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.audience-badge {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+    font-weight: bold;
+    color: var(--dark-navy);
+    width: 80%;
+    text-align: center;
+}
+
+.audience-badge span {
+    color: var(--primary-orange);
+    display: block;
+    font-size: 20px;
+}
+
+/* Grid 4 mục */
+.audience-right {
+    flex: 1.5;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    min-width: 300px;
+}
+
+.audience-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.number-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-orange);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.item-content h3 {
+    color: var(--dark-navy);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.item-content p {
+    color: #475569;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   5. TẠI SAO CHỌN TRÍ THỨC (BỐ CỤC 2 CỘT)
+   ========================================= */
+
+/* KHUNG NỀN TRẮNG CHÍNH */
+.why-choose-us {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: 92%;
+    max-width: 1300px;
+    margin: 50px auto;
+
+    /* SỬA DÒNG NÀY: Tăng lề đáy (bottom) lên 100px hoặc 120px (Top - Right - Bottom - Left) */
+    padding: 60px 50px 100px 50px !important;
+
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+}
+
+/* --- CỘT TRÁI: KHU VỰC HÌNH ẢNH --- */
+.why-image-col {
+    flex: 0 0 42%;
+    /* Cột ảnh chiếm 42% chiều rộng */
+    position: relative;
+    /* Làm gốc tọa độ cho box nổi */
+}
+
+.why-image-col .main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    /* Đổ bóng nhẹ cho ảnh nổi bật */
+}
+
+/* Box trắng nổi đè lên ảnh */
+.floating-box {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+
+    /* TĂNG LỰC KÉO ÂM LÊN ĐỂ HÚT VÀO ẢNH: Kéo lên -80px, đẩy nội dung dưới xuống 50px */
+    margin: -40px auto 20px auto !important;
+
+    background-color: #ffffff;
+    padding: 15px 20px;
+    width: 85%;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+
+.why-header p {
+    display: block;
+    width: fit-content;
+
+    /* Đẩy khung sang phải 90px để nằm ngay dưới chữ "chọn Trung Tâm" */
+    /* Bạn có thể tăng/giảm số 90px này để căn chỉnh chính xác theo mắt nhìn */
+    margin: 15px 0 0 90px;
+
+    padding: 8px 24px;
+    background-color: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 30px;
+    font-size: 15px;
+    color: #ea580c;
+    font-weight: 600;
+    font-style: normal;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.06);
+}
+
+.floating-box h4 {
+    font-size: 22px;
+    color: var(--primary-orange, #f97316);
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* --- CỘT PHẢI: KHU VỰC NỘI DUNG --- */
+.why-content-col {
+    flex: 1;
+    /* Cột nội dung tự động giãn chiếm phần còn lại */
+}
+
+/* Tiêu đề */
+.why-header {
+    width: 100%;
+    text-align: left;
+    /* Căn trái cho thuận mắt với bố cục 2 cột */
+    margin-bottom: 40px;
+}
+
+.why-header h2 {
+    font-size: 34px;
+    color: var(--dark-navy, #1e3a8a);
+    font-weight: 900;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.why-header h2 span {
+    color: var(--primary-orange, #f97316);
+}
+
+.why-header p {
+    font-size: 18px;
+    color: #64748b;
+    margin: 0;
+    font-style: italic;
+}
+
+/* KHỐI 4 TÍNH NĂNG (Dùng Grid chia 2x2) */
+.features-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Chia làm 2 cột bằng nhau */
+    column-gap: 30px;
+    row-gap: 35px;
+}
+
+/* Cấu trúc từng ô */
+.feature-card {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: max-content auto;
+    /* Ép hàng tiêu đề chỉ cao vừa đúng mặt chữ */
+    column-gap: 15px;
+    align-content: start;
+    /* Dồn toàn bộ khung dính lên trên */
+}
+
+/* Icon tròn */
+.feature-icon {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    width: 60px;
+    height: 60px;
+    background-color: #fffaf0;
+    border: 2px solid #ffedd5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    margin: 0;
+}
+
+/* Tiêu đề nhỏ: Giảm độ dày xuống một xíu cho bớt thô, nhìn thanh lịch hơn */
+
+/* Tiêu đề nhỏ */
+.feature-card h3 {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    color: var(--dark-navy);
+    font-size: 19px;
+    font-weight: 700;
+    align-self: start;
+    margin: 5px 0 0 0;
+    /* Đưa lề dưới về 0 triệt để */
+}
+
+/* Đoạn văn mô tả: Chìa khóa để đọc dễ là khoảng cách dòng */
+.feature-card p {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    color: #475569;
+    line-height: 1.75;
+    /* MA THUẬT Ở ĐÂY: Kéo giãn khoảng cách giữa các dòng cho thoáng khí */
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+    align-self: start;
+    text-align: justify;
+    /* Căn đều 2 bên lề giúp khối chữ vuông vức, gọn gàng như báo chí */
+}
+
+/* =========================================
+   RESPONSIVE (THÍCH ỨNG ĐIỆN THOẠI & TABLET)
+   ========================================= */
+
+/* Màn hình Tablet (Dưới 1024px) */
+@media (max-width: 1024px) {
+    .why-choose-us {
+        flex-direction: column;
+        /* Chuyển từ xếp ngang sang xếp dọc */
+        padding: 50px 30px;
+        gap: 60px;
+    }
+
+    .why-image-col {
+        width: 100%;
+        max-width: 600px;
+        /* Khống chế chiều rộng ảnh để không quá to */
+        margin: 0 auto;
+    }
+
+    .why-content-col {
+        width: 100%;
+    }
+
+    .why-header {
+        text-align: center;
+        /* Đưa tiêu đề ra giữa lại trên màn nhỏ */
+    }
+}
+
+/* SỬA KHOẢNG TRẮNG KHI CHUYỂN SANG MOBILE */
+@media (max-width: 1024px) {
+    .why-image-col {
+        flex: none;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .why-content-col {
+        flex: none;
+        width: 100%;
+    }
+
+    .why-choose-us {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+/* Màn hình Mobile (Dưới 768px) */
+@media (max-width: 768px) {
+    .why-choose-us {
+        width: 95%;
+        padding: 40px 20px;
+        border-radius: 20px;
+        margin: 30px auto;
+    }
+
+    .why-header h2 {
+        font-size: 26px;
+    }
+
+    .floating-box {
+        width: 90%;
+        padding: 12px;
+    }
+
+    .floating-box h4 {
+        font-size: 18px;
+    }
+
+    /* Chuyển 4 ô thành 1 hàng dọc trên Mobile */
+    .features-container {
+        grid-template-columns: 1fr;
+        row-gap: 25px;
+    }
+}
+
+/* ================= PHẦN VẤN ĐỀ (DẠNG Ô LƯỚI - MÁY TÍNH) ================= */
+.problem-section {
+    background-color: #f8f9fa;
+    padding: 80px 20px;
+
+    /* THÊM 2 DÒNG NÀY ĐỂ BO TRÒN BACKGROUND 2 ĐẦU TRÊN/DƯỚI HOẶC TOÀN BỘ */
+    border-radius: 40px;
+    /* Bo tròn mềm mại 4 góc */
+    margin: 40px auto;
+    /* Tạo khoảng cách thụt lề với các phần xung quanh cho sang chảnh */
+    max-width: 1280px;
+    /* Giới hạn độ rộng để khung background ôm trọn các ô */
+}
+
+.problem-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.problem-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.badge-noilo {
+    display: inline-block;
+    background-color: #ffebeb;
+    color: #ff5e5e;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.problem-header h2 {
+    font-size: 38px;
+    color: #0f172a;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    font-weight: 900;
+}
+
+.problem-header p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Biến danh sách thành lưới các ô (Grid 2 hoặc 3 cột tùy ý, ở đây để 3 cột cho đẹp hoặc 2 cột giống mẫu) */
+.problem-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Máy tính hiển thị 3 ô một hàng cho cân đối */
+    gap: 30px;
+}
+
+/* Giao diện từng ô */
+.p-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s;
+}
+
+.p-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Định dạng số thứ tự hoặc icon trong ô cho giống mẫu */
+.p-icon {
+    width: 45px;
+    height: 45px;
+    background: #ff6b00;
+    /* Tô màu cam đặc trưng của trung tâm cho nổi bật */
+    color: #ffffff;
+    border-radius: 50%;
+    /* Bo tròn dạng huy hiệu số */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.p-card h3 {
+    font-size: 20px;
+    color: #0f172a;
+    margin-bottom: 12px;
+    font-weight: 800;
+}
+
+.p-card p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* =========================================
+   6. FOOTER (TRÀN VIỀN BẰNG NỀN VÔ CỰC)
+   ========================================= */
+.footer-section {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    /* Cực kỳ quan trọng: Tạo layer để nền không bị chìm */
+
+    background-color: #1e2532 !important;
+    color: #ffffff !important;
+    padding: 60px 0 20px 0;
+    box-sizing: border-box;
+}
+
+/* Kỹ thuật "hack" nền vô cực sang 2 bên bất chấp thẻ cha */
+.footer-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100vw;
+    right: -100vw;
+    background-color: #1e2532;
+    z-index: -1;
+    /* Nằm dưới chữ và bản đồ */
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1150px;
+    /* Giữ nội dung gọn gàng ở giữa màn hình */
+    margin: 0 auto;
+    padding: 0 30px;
+    box-sizing: border-box;
+    gap: 60px;
+}
+
+/* --- CỘT CHỮ --- */
+.footer-info {
+    flex: 1;
+    min-width: 320px;
+}
+
+.footer-info h2 {
+    color: #f97316 !important;
+    font-size: 28px;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.footer-info p {
+    color: #f1f5f9 !important;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.contact-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.contact-list li {
+    color: #cbd5e1 !important;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.contact-list li b {
+    color: #ffffff !important;
+}
+
+/* --- CỘT BẢN ĐỒ --- */
+.footer-map {
+    flex: 1.2;
+    min-width: 320px;
+}
+
+.footer-map iframe {
+    width: 100%;
+    height: 320px;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    display: block;
+}
+
+/* --- DÒNG BẢN QUYỀN --- */
+.footer-bottom {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8 !important;
+    font-size: 14px;
+}
+
+/* =========================================
+   RESPONSIVE (ĐIỆN THOẠI)
+   ========================================= */
+/* ==========================================================================
+   ====== CẤU HÌNH NÚT 3 GẠCH (HAMBURGER MENU) ======
+   ========================================================================== */
+.menu-toggle {
+    display: none;
+    /* Mặc định trên PC là ẩn */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #2c3e50;
+    /* Tô màu xanh đen cho nó hiện hình */
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* (Dòng chữ @media của ông bạn đang nằm ngay dưới đây nè...) */
+/* @media (max-width: 768px) { ... */
+
+
+
+
+/* ==========================================================================
+   ====== KHỐI GIAO DIỆN "CHỐT HẠ" - ALL IN ONE (PC & MOBILE) ======
+   ========================================================================== */
+
+/* --- 1. KHÓA JAVASCRIPT PHÁ FORM (Áp dụng chung) --- */
+.modal[style*="display: block"],
+.modal[style*="display:block"],
+.custom-modal-overlay[style*="display: block"],
+.custom-modal-overlay[style*="display:block"],
+#customSuccessModal[style*="display: block"],
+#customSuccessModal[style*="display:block"] {
+    display: flex !important;
+}
+
+/* Ẩn nút đăng nhập thừa trên PC (Do đã nhét vào menu) */
+@media (min-width: 769px) {
+    .menu ul {
+        align-items: center;
+    }
+
+    .mobile-login .btn-login {
+        margin-left: 15px;
+    }
+}
+
+/* --- Cấu hình màu sắc và kích thước cho nút 3 gạch --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #2c3e50;
+    /* Tô màu xanh đen cho nó hiện ra */
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* ==========================================================================
+   ====== GÓC DÀNH RIÊNG CHO ĐIỆN THOẠI (DƯỚI 768px) ======
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* --- 1. KHÓA TRỤC NGANG TOÀN TRANG (Chống vuốt ngang) --- */
+    html,
+    body {
+        width: 100vw !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* --- 2. MENU 3 GẠCH & LOGO --- */
+    .navbar .logo h1 {
+        font-size: 20px !important;
+        white-space: normal !important;
+        line-height: 1.2 !important;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+        order: 2 !important;
+    }
+
+    .auth-buttons {
+        display: none !important;
+    }
+
+    /* Ẩn nút cũ đi */
+    .navbar {
+        position: relative !important;
+    }
+
+    .menu {
+        display: none !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1) !important;
+        padding: 10px 0 20px 0 !important;
+        z-index: 999 !important;
+    }
+
+    .menu.active {
+        display: block !important;
+    }
+
+    .menu ul {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+    }
+
+    .menu ul li {
+        width: 100%;
+        text-align: center;
+        display: block !important;
+    }
+
+    .menu ul li a {
+        display: block !important;
+        color: #2c3e50 !important;
+        font-size: 16px !important;
+        font-weight: bold !important;
+        padding: 12px 0 !important;
+    }
+
+    .mobile-login {
+        margin-top: 10px !important;
+    }
+
+    /* --- 3. KHÓA CHẶT 2 CÁI FORM (Đăng ký & Thông báo) --- */
+    .modal,
+    .custom-modal-overlay,
+    #customSuccessModal {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 15px !important;
+        box-sizing: border-box !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+    }
+
+    .modal-content,
+    .custom-modal-content,
+    .premium-modal {
+        position: relative !important;
+        inset: auto !important;
+        margin: 0 auto !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        max-width: 350px !important;
+        max-height: 85vh !important;
+        overflow-y: auto !important;
+        box-sizing: border-box !important;
+        transform: none !important;
+        padding: 20px 15px !important;
+    }
+
+    /* --- 4. DỨT ĐIỂM KHOẢNG TRẮNG PHẦN "TẠI SAO" --- */
+    .why-choose-us,
+    .about-section {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        padding-top: 20px !important;
+        /* TẠO BỆ ĐỠ 50px DƯỚI ĐÁY: Đảm bảo nền trắng luôn ôm trọn mục 4 (Sửa lỗi ảnh 2) */
+        padding-bottom: 50px !important;
+        height: auto !important;
+        min-height: fit-content !important;
+        overflow: visible !important;
+    }
+
+    .why-image-col,
+    .about-image {
+        /* XÓA SỐ -150px: Chống rút ruột khung nền */
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* Lực hút 1: Kéo thẻ Vươn tầm bám vào ảnh */
+    .floating-box,
+    .audience-badge,
+    .success-badge {
+        position: relative !important;
+        bottom: auto !important;
+        left: 0 !important;
+        transform: translateY(-50%) !important;
+        /* margin âm 50px ở đáy để nuốt gọn khoảng trắng thừa do thẻ nổi tạo ra */
+        margin: 0 auto -50px auto !important;
+        width: 90% !important;
+        z-index: 5 !important;
+    }
+
+    /* Lực hút 2: Cụm chữ bám sát vào thẻ nổi */
+    .why-content-col,
+    .audience-right {
+        /* Đổi từ 0 thành số âm (-40px hoặc -50px) để giật mảng chữ "Tại sao" lên */
+        margin-top: -40px !important;
+
+        padding-top: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* --- SỬA TRIỆT ĐỂ LỖI ĐÈ CHỮ Ở PHẦN "KHÓA HỌC DÀNH CHO AI" (MOBILE) --- */
+    .target-audience {
+        padding: 40px 15px !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .audience-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        /* Bỏ gap thừa để thẻ bài tự kiểm soát khoảng cách */
+    }
+
+    .audience-left {
+        width: 100% !important;
+        position: relative !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Biến thẻ bài thành relative, kéo ngập lên ảnh và đẩy bạt chữ xuống */
+    .audience-badge {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        transform: none !important;
+
+        /* Lực kéo chuẩn: Kéo giật lên đè ảnh 70px, sửa ảnh thì sửa ở đây, đẩy mảng chữ số 1-2-3-4 xuống 50px phần này khóa của khóa học dành cho ai */
+        margin: -60px auto 160px auto !important;
+
+        width: 90% !important;
+        box-sizing: border-box !important;
+        z-index: 10 !important;
+    }
+
+    .audience-right {
+        width: 100% !important;
+        display: grid !important;
+        /* Xếp thành 2 cột đều nhau y hệt trong ảnh chụp của bạn */
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+
+    /* ====================================================================================
+       TRỊ DỨT ĐIỂM: 1 Ô 1 HÀNG NGANG, CHỮ ĐẸP & TRÁNH ĐÈ NỀN TRẮNG của phần VẤN ĐỀ Ở MOBILE 
+       ========================================================== ===========================*/
+
+    .problem-section {
+        padding: 40px 15px !important;
+        border-radius: 20px !important;
+
+        /* ĐIỀU CHỈNH Ở ĐÂY: */
+        margin-top: 50px !important;
+        /* Tăng khoảng cách đẩy phần Vấn Đề tụt xuống, không đè lên phần trên nữa */
+        margin-bottom: 60px !important;
+        /* Giữ khoảng cách an toàn với phần dưới */
+
+        height: auto !important;
+        min-height: fit-content !important;
+        overflow: visible !important;
+    }
+
+    /* Ép 5 ô thành 1 cột dọc thẳng tắp, mỗi ô là 1 hàng ngang trọn vẹn */
+    .problem-cards {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        /* Khoảng cách giữa các ô */
+    }
+
+    /* Định dạng lại từng ô cho rộng rãi, dễ đọc, không bị bóp méo chữ */
+    .p-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 20px !important;
+        text-align: left !important;
+        /* Canh trái cho dễ đọc giống văn bản */
+    }
+
+    /* Chỉnh kích thước chữ bên trong ô cho vừa vặn màn hình di động */
+    .p-card h3 {
+        font-size: 18px !important;
+        font-weight: 800 !important;
+        margin-bottom: 10px !important;
+    }
+
+    .p-card p {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+
+
+    }
+
+}
+
+/* 2. LỰC KÉO BẢO HIỂM CHO MOBILE Sửa khung box ngay ảnh của giáo viên tại sao thì sửa tại đây (Đặt ở phần cuối của file CSS) */
+@media (max-width: 768px) {
+    .floating-box {
+        /* Mobile màn hình nhỏ nên chỉ cần kéo nhẹ -40px để không bị lẹm quá sâu */
+        margin: -5px auto 20px auto !important;
+        width: 95%;
+        /* Mở rộng thêm bề ngang cho điện thoại dễ đọc */
+    }
+}
+
+
+
+

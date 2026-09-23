@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Trung Tâm Trí Thức</title>
+    <!-- Link FontAwesome để lấy icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Link tới file CSS của ông bạn -->
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+
+<body>
+
+    <!-- THỂ BÊN TRÁI: SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <i class="fas fa-graduation-cap"></i>
+            <span> Admin Trí Thức </span>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active" id="menu-schedule">
+                <a href="#"><i class="fas fa-calendar-alt"></i> Lịch Làm Việc</a>
+            </li>
+
+            <li id="menu-courses">
+                <a href="#"><i class="fas fa-book-open"></i> Quản Lý Danh sách Đăng Ký</a>
+            </li>
+
+            <li id="menu-student-schedule">
+                <a href="#"><i class="fas fa-users"></i> Sắp xếp lịch học của Học Sinh</a>
+            </li>
+
+            <li id="menu-teacher-schedule">
+                <a href="#"><i class="fas fa-chalkboard-teacher"></i> Sắp xếp Lịch Dạy của Giáo Viên</a>
+            </li>
+
+            <!-- Tab Điểm danh mới thêm -->
+            <li id="menu-attendance">
+                <a href="#"><i class="fas fa-clipboard-check"></i> Danh sách điểm danh của Học Sinh</a>
+            </li>
+            <li id="menu-admin-scores">
+                <a href="#"><i class="fas fa-star"></i> Quản Lý Điểm Số</a>
+            </li>
+            <li id="menu-leave-requests">
+                <a href="#"><i class="fas fa-envelope-open-text"></i> Quản lý Đơn từ</a>
+            </li>
+        </ul>
+    </aside>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <!-- THÂN BÊN PHẢI: MAIN CONTENT -->
+    <div class="main-content">
+        <!-- THANH TRÊN CÙNG: TOPBAR -->
+        <header class="topbar">
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <div class="topbar-right">
+                <div class="notification">
+                    <i class="far fa-bell"></i>
+                    <span class="badge-noti">3</span>
+                </div>
+                <!-- Vùng thông tin Admin -->
+                <div class="admin-profile" id="adminProfile">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Avatar" class="avatar">
+                    <div class="admin-info">
+                        <span class="admin-name" id="adminName">Đang tải...</span>
+                        <span class="admin-role">Quản trị viên</span>
+                    </div>
+                    <i class="fas fa-chevron-down drop-icon"></i>
+                    <!-- Dropdown Đăng xuất -->
+                    <div class="dropdown-menu">
+                        <a href="#"><i class="far fa-user-circle"></i> Hồ sơ cá nhân</a>
+                        <a href="#" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- NỘI DUNG CHÍNH: DASHBOARD -->
+        <main class="dashboard-body">
+
+            <!-- ========================================== -->
+            <!-- SECTION 1: LỊCH LÀM VIỆC (Mặc định hiển thị) -->
+            <!-- ========================================== -->
+            <div id="section-schedule" class="content-section" style="display: block;">
+                <!-- Khu vực Tiêu đề -->
+                <div class="page-header">
+                    <div>
+                        <h2><i class="far fa-calendar-check text-orange"></i> Lịch Trực Trung Tâm</h2>
+                        <p class="subtitle">Lịch trực tuần: <span id="weekRange"
+                                style="font-weight: 600; color: #ff7b00;">Chào mừng Admin trung tâm !</span></p>
+                    </div>
+                    <button class="btn-primary" id="btnAddSchedule">
+                        <i class="fas fa-plus"></i> Phân Lịch Mới
+                    </button>
+                </div>
+
+                <!-- Khu vực Bảng Lịch (Style giống FAP) -->
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h3>Chi tiết ca làm việc tuần này</h3>
+                        <div class="card-tools">
+                            <span class="status-dot green"></span> Đã trực
+                            <span class="status-dot blue" style="margin-left: 10px;"></span> Sắp tới
+                            <span class="status-dot red" style="margin-left: 10px;"></span> Nghỉ/Vắng
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>NGÀY</th>
+                                    <th>CA TRỰC</th>
+                                    <th>NHIỆM VỤ</th>
+                                    <th>THỜI GIAN</th>
+                                    <th>TRẠNG THÁI</th>
+                                    <th>THAO TÁC</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scheduleBody">
+                                <!-- JS SẼ BƠM DỮ LIỆU VÀO ĐÂY -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- Kết thúc Section Lịch làm việc -->
+
+
+
+            <!-- ========================================== -->
+            <!-- SECTION 2: QUẢN LÝ ĐĂNG KÝ (Mặc định ẩn) -->
+            <!-- ========================================== -->
+            <div id="section-courses" class="content-section" style="display: none;">
+
+                <!-- Tiêu đề -->
+                <div class="page-header">
+                    <div>
+                        <h2><i class="fas fa-clipboard-list text-orange"></i> Danh Sách Khách Đăng Ký</h2>
+                        <p class="subtitle">Quản lý số điện thoại và trạng thái tư vấn phụ huynh</p>
+                    </div>
+                </div>
+
+                <!-- Bảng: Khách hàng chờ tư vấn -->
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h3>Khách hàng chờ tư vấn</h3>
+                        <div class="card-tools">
+                            <span class="status-dot red"></span> Chưa gọi
+                            <span class="status-dot green" style="margin-left: 10px;"></span> Đã tư vấn
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>NGÀY ĐĂNG KÝ</th>
+                                    <th>HỌ TÊN BÉ</th>
+                                    <th>SỐ ĐIỆN THOẠI</th>
+                                    <th>MÔN QUAN TÂM</th>
+                                    <th>TRẠNG THÁI</th>
+                                    <th>THAO TÁC</th>
+                                </tr>
+                            </thead>
+                            <tbody id="registrationBody">
+                                <!-- JS sẽ bơm dữ liệu đăng ký vào đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- / Kết thúc Section Đăng ký -->
+
+            <!-- ========================================== -->
+            <!-- SECTION 3: SẮP XẾP LỊCH DẠY GIÁO VIÊN      -->
+            <!-- ========================================== -->
+            <div id="section-teacher-schedule" class="content-section" style="display: none;">
+                <!-- Tiêu đề -->
+                <div class="page-header"
+                    style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                    <div>
+                        <h2><i class="fas fa-calendar-check text-orange"></i> Quản Lý Lịch Dạy Giáo Viên</h2>
+                        <p class="subtitle" style="color:#666;">Cập nhật trạng thái điểm danh và phân lịch tuần mới</p>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <!-- 1. Nút Xuất Excel -->
+                        <button class="btn-success" onclick="exportToExcel()"
+                            style="background: #27ae60; border: none; padding: 10px 15px; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(39, 174, 96, 0.2);">
+                            <i class="fas fa-file-excel"></i> Xuất Excel
+                        </button>
+                        <!-- 1. Nút Phân Ca -->
+                        <button class="btn-primary" id="btnAddTeacherSchedule"
+                            style="background: #ff7b00; border: none; padding: 10px 20px; color: white; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                            <i class="fas fa-plus"></i> Phân ca mới
+                        </button>
+                        <!-- 1. Nút Reset -->
+                        <button class="btn-success-outline" onclick="confirmResetStatus()"
+                            style="background: white; color: #2ecc71; border: 1px solid #2ecc71; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                            <i class="fas fa-sync-alt"></i> Reset Tuần Mới
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bộ Lọc -->
+                <div class="filter-section"
+                    style="background: #fff8f2; border-left: 4px solid #ff7b00; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px;">
+                    <label style="font-weight: bold; color: #333; margin: 0;">👤 Chọn Giáo Viên:</label>
+                    <select class="form-input" id="filterTeacherSelect"
+                        style="flex: 1; max-width: 300px; padding: 10px; border: 1px solid #ddd; border-radius: 6px; outline: none;">
+                        <option value="all">-- Toàn bộ Trung Tâm --</option>
+                        <!-- JS SẼ ĐỔ TÊN GIÁO VIÊN TỪ SQL VÀO ĐÂY -->
+                    </select>
+                </div>
+
+                <!-- Bảng Dữ Liệu -->
+                <div class="card shadow"
+                    style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <div class="table-responsive">
+                        <table class="table text-center" style="width: 100%; border-collapse: collapse;">
+                            <thead style="background: #2c3e50; color: white;">
+                                <tr>
+                                    <th style="padding: 12px;">THỨ / NGÀY</th>
+                                    <th style="padding: 12px;">MÔN - LỚP</th>
+                                    <th style="padding: 12px;">GIÁO VIÊN</th>
+                                    <th style="padding: 12px;">PHÒNG</th>
+                                    <th style="padding: 12px;">THỜI GIAN</th>
+                                    <th style="padding: 12px;">TRẠNG THÁI</th>
+                                    <th style="padding: 12px;">THAO TÁC</th>
+                                </tr>
+                            </thead>
+                            <!-- MỤC TIÊU BƠM DỮ LIỆU CỦA JS NẰM Ở ĐÂY -->
+                            <tbody id="teacherScheduleBody">
+                                <!-- Code JS sẽ tự động tạo các thẻ <tr> nhét vào đây -->
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <button class="btn-danger-outline" onclick="confirmClearSchedule()"
+                    style="background: white; color: #e74c3c; border: 1px solid #e74c3c; padding: 10px 15px; border-radius: 8px; cursor: pointer;">
+                    <i class="fas fa-trash-alt"></i> Reset lịch dạy
+                </button>
+            </div>
+
+
+            <!-- / Kết thúc Section Lịch dạy -->
+
+            <!-- ========================================== -->
+            <!-- MODAL POPUP: FORM PHÂN CÔNG LỊCH DẠY       -->
+            <!-- (Ghi chú: Đặt Modal này nằm ngay dưới section để không bị kẹt layout) -->
+            <!-- ========================================== -->
+            <div id="teacherScheduleModal" class="modal-overlay"
+                style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center;">
+                <div class="modal-box"
+                    style="background: white; width: 90%; max-width: 500px; padding: 25px; border-radius: 12px;">
+                    <h3 class="modal-title" style="text-align:center; margin-bottom: 20px;"><i
+                            class="fas fa-calendar-plus text-orange"></i> Phân Công Lịch Dạy</h3>
+
+                    <form id="formAddTeacherSchedule">
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label style="font-weight: bold; font-size: 13px;">Giáo Viên:</label>
+                            <select id="modalTeacherSelect" class="form-input"
+                                style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;"
+                                required>
+                                <option value="">-- Chọn Giáo Viên --</option>
+                                <!-- JS SẼ BƠM DANH SÁCH GIÁO VIÊN VÀO -->
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label style="font-weight: bold; font-size: 13px;">Môn - Lớp:</label>
+                            <select id="modalClassSelect" class="form-input"
+                                style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;"
+                                required>
+                                <option value="">-- Chọn Lớp --</option>
+                                <option value="Toán 6">Toán 6</option>
+                                <option value="Văn 6">Văn 6</option>
+                                <option value="Toán 7">Toán 7</option>
+                                <option value="Anh 7">Anh 7</option>
+                                <option value="Hóa 8">Hóa 8</option>
+                                <option value="Toán 9">Toán 9</option>
+                                <option value="Anh 9">Anh 9</option>
+                                <!-- (Thêm các môn khác nếu cần) -->
+                            </select>
+                        </div>
+
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div class="form-group" style="flex: 1;">
+                                <label style="font-weight: bold; font-size: 13px;">Ngày dạy:</label>
+                                <input type="date" id="modalWorkDate" class="form-input"
+                                    style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;"
+                                    required>
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label style="font-weight: bold; font-size: 13px;">Ca học:</label>
+                                <select id="modalTimeRange" class="form-input"
+                                    style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;"
+                                    required>
+                                    <option value="17:30 - 19:00">17:30 - 19:00</option>
+                                    <option value="19:00 - 20:30">19:00 - 20:30</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="font-weight: bold; font-size: 13px;">Phòng học:</label>
+                            <input type="text" id="modalRoom" class="form-input"
+                                style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;"
+                                placeholder="VD: Phòng 01" required>
+                        </div>
+
+                        <button type="submit" class="btn-submit-orange"
+                            style="width: 100%; padding: 12px; background: #ff7b00; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Lưu
+                            Lịch Dạy</button>
+                        <button type="button" id="btnCloseTeacherModal" class="btn-cancel"
+                            style="width: 100%; padding: 12px; background: #f1f1f1; color: #555; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px;">Hủy</button>
+                    </form>
+                </div>
+            </div>
+            <!-- ========================================== -->
+            <!-- SECTION 4: SẮP XẾP Lịch Học Cho Học Sinh      -->
+            <!-- ========================================== -->
+            <div id="section-student-schedule" class="content-section" style="display: none;">
+                <div class="card shadow"
+                    style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 20px;"><i class="fas fa-user-plus"></i> Xếp Lớp Cho Học
+                        Sinh
+                    </h3>
+
+                    <div style="display: flex; gap: 15px; align-items: flex-end;">
+                        <div style="flex: 1;">
+                            <label style="font-weight: bold; margin-bottom: 5px; display: block;">Chọn Học Sinh:</label>
+                            <select id="studentSelect"
+                                style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                                <option value="">-- Đang tải danh sách... --</option>
+                            </select>
+                        </div>
+
+                        <div style="flex: 1;">
+                            <label style="font-weight: bold; margin-bottom: 5px; display: block;">Chọn Lớp Học (Từ Lịch
+                                Giáo
+                                Viên):</label>
+                            <select id="classSelect"
+                                style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                                <option value="">-- Đang tải danh sách lớp... --</option>
+                            </select>
+                        </div>
+
+                        <button onclick="saveStudentEnrollment()"
+                            style="background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; height: 42px;">
+                            <i class="fas fa-save"></i> Lưu Xếp Lớp
+                        </button>
+                    </div>
+                    <!-- BẢNG THỐNG KÊ XẾP LỚP (Dán ngay dưới form Xếp lớp) -->
+                    <div class="card shadow"
+                        style="margin-top: 20px; background: white; padding: 20px; border-radius: 12px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px;"><i class="fas fa-list-alt text-orange"></i>
+                            Danh Sách Học Sinh Đã Xếp Lớp</h3>
+
+                        <div class="table-responsive">
+                            <table class="table text-center" style="width: 100%; border-collapse: collapse;">
+                                <thead style="background: #2c3e50; color: white;">
+                                    <tr>
+                                        <th style="padding: 12px;">MÃ HS</th>
+                                        <th style="padding: 12px;">HỌ TÊN HỌC SINH</th>
+                                        <th style="padding: 12px; color: #ff7b00;">LỚP ĐANG HỌC</th>
+                                        <th style="padding: 12px;">NGÀY XẾP</th>
+                                        <th style="padding: 12px;">THAO TÁC</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="enrollmentBody">
+                                    <!-- JS SẼ BƠM DANH SÁCH VÀO ĐÂY -->
+                                </tbody>
+                            </table>
+                        </div> <!-- Dòng 375: Đóng table-responsive -->
+                    </div> <!-- Dòng 376: Đóng card shadow -->
+                </div> <!-- DÒNG 377 (THÊM MỚI): Đóng hoàn toàn tab Lịch Học Sinh -->
+            </div><!-- Cú DEBUG kinh điển nhất trong cuộc đời tao  -->
+
+
+
+
+
+            <!-- ========================================== -->
+            <!-- TAB: DANH SÁCH ĐIỂM DANH (ADMIN) -->
+            <!-- ========================================== -->
+            <div id="section-admin-attendance" class="content-section" style="display: none;">
+                <div class="card shadow" style="padding: 20px;">
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="color: #ff7b00;"><i class="fas fa-clipboard-list"></i> Báo Cáo Điểm Danh</h2>
+                        <p style="color: #666;">Kiểm tra tình trạng chuyên cần do giáo viên báo cáo (Chế độ Chỉ Xem)
+                        </p>
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- BỘ LỌC VÀ THANH CÔNG CỤ (Đã fix Responsive Mobile) -->
+                    <!-- ========================================== -->
+                    <div
+                        style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+
+                        <label style="font-weight: bold; color: #2c3e50; white-space: nowrap; margin: 0;">
+                            <i class="fas fa-filter"></i> Chọn Giáo viên:
+                        </label>
+
+                        <!-- Ô chọn giáo viên được làm cho co giãn linh hoạt -->
+                        <select id="filterTeacherAttendance" onchange="loadAdminAttendance()"
+                            style="padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; flex: 1; min-width: 150px; max-width: 300px; outline: none;">
+                            <option value="">-- Tất cả Giáo viên --</option>
+                            <!-- Danh sách giáo viên sẽ đổ vào đây -->
+                        </select>
+
+                        <!-- Các nút bấm được set nowrap để không bị rớt chữ làm méo nút -->
+                        <button class="btn btn-primary" onclick="loadAdminAttendance()"
+                            style="background-color: #3498db; border: none; padding: 8px 15px; color: white; border-radius: 5px; cursor: pointer; white-space: nowrap;">
+                            <i class="fas fa-search"></i> Lọc
+                        </button>
+
+                        <button onclick="exportExcelAttendance()"
+                            style="background-color: #27ae60; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; white-space: nowrap; transition: 0.2s;"
+                            onmouseover="this.style.backgroundColor='#219a52'"
+                            onmouseout="this.style.backgroundColor='#27ae60'">
+                            <i class="fas fa-file-excel"></i> Xuất Excel
+                        </button>
+
+                        <button onclick="resetTeacherAttendance()"
+                            style="background-color: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; white-space: nowrap; transition: 0.2s;"
+                            title="Xóa dữ liệu điểm danh tháng này">
+                            <i class="fas fa-trash-alt"></i> Reset Dữ Liệu
+                        </button>
+
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- Danh Sách Điểm Danh của giáo viên  -->
+                    <!-- ========================================== -->
+                    <div class="table-responsive">
+                        <table class="table text-center">
+                            <thead style="background-color: #2c3e50; color: white;">
+                                <tr>
+                                    <th>NGÀY HỌC</th>
+                                    <th>GIÁO VIÊN</th>
+                                    <th>MÔN - LỚP</th>
+                                    <th>HỌC SINH</th>
+                                    <th>TRẠNG THÁI</th>
+                                    <th>GHI CHÚ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminAttendanceBody">
+                                <tr>
+                                    <td colspan="6" style="color: #7f8c8d; padding: 20px;">Bấm "Xem Báo Cáo" để tải
+                                        dữ liệu điểm danh mới nhất.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- ========================================== -->
+            <!-- TAB:Quản Lý điểm số  -->
+            <!-- ========================================== -->
+            <div id="section-admin-scores" class="content-section" style="display: none;">
+                <div class="card shadow" style="padding: 20px;">
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="color: #ff7b00;"><i class="fas fa-star"></i> Bảng Điểm Trung Tâm</h2>
+                        <p style="color: #666;">Kiểm tra điểm cuối kỳ do giáo viên các lớp nộp về (Chờ duyệt)</p>
+                    </div>
+
+                    <!-- Bộ lọc -->
+                    <!-- Bộ lọc theo Giáo viên & Nút Excel -->
+                    <!-- Bộ lọc và Thanh công cụ Admin -->
+                    <div
+                        style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                        <label style="font-weight: bold; color: #2c3e50;"><i class="fas fa-filter"></i> Chọn Giáo
+                            viên:</label>
+
+                        <select id="filterScoreTeacherAdmin" onchange="loadAdminScores()"
+                            style="padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; min-width: 220px; outline: none;">
+                            <option value="">-- Tất cả Giáo viên --</option>
+                        </select>
+
+                        <button class="btn btn-primary" onclick="loadAdminScores()"
+                            style="background-color: #3498db; border: none; padding: 8px 15px; color: white; border-radius: 5px; cursor: pointer;">
+                            <i class="fas fa-search"></i> Lọc
+                        </button>
+
+                        <!-- 🟢 Nút Duyệt Hàng Loạt (Xử lý theo Giáo viên đang chọn hoặc Tất cả) -->
+                        <button class="btn btn-warning" onclick="approveScoresBatch()"
+                            style="background-color: #e67e22; border: none; padding: 8px 15px; color: white; border-radius: 5px; cursor: pointer;">
+                            <i class="fas fa-check-circle"></i> Duyệt Hàng Loạt
+                        </button>
+
+                        <button class="btn btn-success" onclick="exportAdminScoresExcel()"
+                            style="background-color: #27ae60; border: none; padding: 8px 15px; color: white; border-radius: 5px; cursor: pointer;">
+                            <i class="fas fa-file-excel"></i> Xuất Excel
+                        </button>
+
+                        <!-- THÊM NÚT XÓA HÀNG LOẠT VÀO ĐÂY (NẰM TRÊN THẺ DIV ĐÓNG) -->
+                        <button class="btn btn-danger" onclick="deleteScoresBatch()"
+                            style="background-color: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
+                            <i class="fas fa-trash-alt"></i> Xóa Hàng Loạt
+                        </button>
+
+                    </div> <!-- KẾT THÚC THANH CÔNG CỤ (Thẻ div này giờ bao bọc cả 4 nút) -->
+                    <!-- Bảng hiển thị có thêm Cột Thời Gian -->
+                    <div class="table-responsive">
+                        <table class="table text-center" style="width: 100%; border-collapse: collapse;">
+                            <thead style="background-color: #2c3e50; color: white;">
+                                <tr>
+                                    <th style="padding: 12px;">THỜI GIAN NỘP</th>
+                                    <th>MÃ HS</th>
+                                    <th>HỌC SINH</th>
+                                    <th>LỚP</th>
+                                    <th>GIÁO VIÊN</th>
+                                    <th>ĐIỂM (10)</th>
+                                    <th>NHẬN XÉT</th>
+                                    <th>TRẠNG THÁI</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminScoreBody">
+                                <tr>
+                                    <td colspan="8" style="padding: 30px; color:#888;">Bấm Lọc để xem điểm...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- ========================================== -->
+            <!-- TAB: XEM & XỬ LÝ ĐƠN TỪ HỌC SINH           -->
+            <!-- ========================================== -->
+            <div id="section-admin-requests" class="content-section" style="display: none;">
+                <div class="card shadow" style="padding: 20px; background: white; border-radius: 10px;">
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="color: #ff7b00; margin: 0 0 5px 0;">
+                            <i class="fas fa-envelope-open-text"></i> Danh Sách Đơn Từ Học Sinh
+                        </h2>
+                        <small style="color: #7f8c8d;">Tiếp nhận và xét duyệt đơn xin vắng học, phúc khảo và khiếu nại
+                            học phí</small>
+                    </div>
+
+                    <!-- Bộ lọc nhanh & Thao tác (Đã canh thẳng hàng) -->
+                    <div
+                        style="display: flex; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #eee;">
+
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label style="font-weight: bold; color: #2c3e50; font-size: 14px; margin: 0;">Lọc loại
+                                đơn:</label>
+                            <select id="filterRequestType" onchange="filterAdminRequests()"
+                                style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 5px; outline: none; min-width: 200px;">
+                                <option value="">-- Tất cả loại đơn --</option>
+                                <option value="Đơn xin vắng học">Đơn xin vắng học</option>
+                                <option value="Đơn xin phúc khảo điểm">Đơn xin phúc khảo điểm</option>
+                                <option value="Đơn xin kiểm tra khoản đóng phí">Đơn xin kiểm tra khoản đóng phí</option>
+                            </select>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label style="font-weight: bold; color: #2c3e50; font-size: 14px; margin: 0;">Lọc trạng
+                                thái:</label>
+                            <select id="filterRequestStatus" onchange="filterAdminRequests()"
+                                style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 5px; outline: none; min-width: 150px;">
+                                <option value="">-- Tất cả trạng thái --</option>
+                                <option value="Chờ duyệt">Chờ duyệt</option>
+                                <option value="Đã duyệt">Đã duyệt</option>
+                                <option value="Từ chối">Từ chối</option>
+                            </select>
+                        </div>
+
+                        <!-- Nhóm Nút bấm đẩy sang góc phải -->
+                        <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
+                            <button onclick="loadAdminRequests()"
+                                style="background: #172b4d; color: white; border: none; padding: 9px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                <i class="fas fa-sync-alt"></i> Tải lại
+                            </button>
+                            <button onclick="deleteRequestsByType()"
+                                style="background: #e74c3c; color: white; border: none; padding: 9px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;"
+                                title="Chỉ xóa những đơn thuộc Loại đang chọn">
+                                <i class="fas fa-trash-alt"></i> Xóa
+                            </button>
+                            <button onclick="exportRequestsToExcel()"
+                                style="background: #2ecc71; color: white; border: none; padding: 9px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                <i class="fas fa-file-excel"></i> Xuất Excel
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Bảng danh sách đơn -->
+                    <div class="table-responsive">
+                        <table class="table text-center" style="width: 100%; border-collapse: collapse;">
+                            <thead style="background-color: #2c3e50; color: white;">
+                                <tr>
+                                    <th style="padding: 12px;">THỜI GIAN GỬI</th>
+                                    <th>LOẠI ĐƠN</th>
+                                    <th>HỌC SINH</th>
+                                    <th>LỚP</th>
+                                    <th>GV PHỤ TRÁCH</th>
+                                    <th style="width: 25%;">NỘI DUNG</th>
+                                    <th>TRẠNG THÁI</th>
+                                    <th>THAO TÁC</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminRequestsBody">
+                                <tr>
+                                    <td colspan="8" style="padding: 25px; color: #7f8c8d;">Đang tải danh sách đơn từ...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Link tới file JS của ông bạn -->
+    <script src="../../js/admin.js"></script>
+    <!-- Thư viện hỗ trợ xuất Excel trực tiếp từ Frontend -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</body>
+
+</html>

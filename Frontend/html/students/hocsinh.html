@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Sinh - Trung Tâm Trí Thức</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/hocsinh.css">
+</head>
+
+<body style="background-color: #fcfcfc;">
+
+    <!-- Khối nền hoa văn mờ trang trí -->
+    <div class="floral-bg"></div>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar shadow">
+            <div class="sidebar-header" style="background: linear-gradient(135deg, #ff7b00, #ff9e3d);">
+                <h2><i class="fas fa-user-graduate"></i> Học Sinh Trí Thức</h2>
+            </div>
+            <!-- Sửa lại menu trong hocsinh.html một chút để bấm được -->
+            <ul class="sidebar-menu">
+                <li class="active" id="menuSchedule" onclick="switchTab('schedule')">
+                    <a href="#"><i class="fas fa-calendar-alt"></i> Thời Khóa Biểu</a>
+                </li>
+                <li id="menuScore" onclick="switchTab('score')">
+                    <a href="#"><i class="fas fa-star"></i> Kết Quả Học Tập</a>
+                </li>
+                <li id="menuRequest" onclick="switchTab('request')">
+                    <a href="#"><i class="fas fa-file-signature"></i> Làm Đơn</a>
+                </li>
+                <li id="menuViewRequests" onclick="switchTab('viewRequests')">
+                    <a href="#"><i class="fas fa-list-alt"></i> Xem Đơn</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 👉 KHÚC MỚI THÊM: Lớp phủ thảm đen (Mặc định ẩn) -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header shadow">
+                <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
+                    <button id="mobileMenuBtn"
+                        style="display: none; background: none; border: none; font-size: 22px; color: #ff7b00; cursor: pointer;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h3 id="welcomeStudentMessage" style="color: #ff7b00; margin: 0;">
+                        <i class="fab fa-pagelines"></i> Chào mừng quay trở lại!
+                    </h3>
+                </div>
+
+                <!-- HEADER RIGHT MỚI: Chuông & Menu Cá nhân -->
+                <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
+
+                    <!-- 1. Cái chuông thông báo -->
+                    <div class="notification-bell" onclick="toggleNotiMenu(event)">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">2</span>
+
+                        <!-- Dropdown Chuông -->
+                        <div class="dropdown-menu shadow" id="notiDropdown">
+                            <div class="dropdown-header">Thông báo mới</div>
+                            <ul class="dropdown-list">
+                                <li><strong>Hệ thống:</strong> Chào mừng em tới Trung Tâm Trí Thức.</li>
+                                <li><strong>Admin:</strong> Đừng quên lịch học của mình nhé !</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 2. Menu Tài khoản (Avatar + Tên) -->
+                    <div class="user-profile" onclick="toggleProfileMenu(event)">
+                        <img src="https://ui-avatars.com/api/?name=HS&background=ff7b00&color=fff" alt="Avatar"
+                            id="headerAvatar" class="avatar">
+                        <span class="user-name-role">
+                            <strong id="headerProfileName">Học Sinh</strong>
+                            <i class="fas fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i>
+                        </span>
+
+                        <!-- Dropdown Tài khoản -->
+                        <div class="dropdown-menu shadow" id="profileDropdown">
+                            <a href="#" onclick="openProfileModal()"><i class="fas fa-id-card"></i> Thông tin cá
+                                nhân</a>
+                            <a href="#" onclick="logout()" style="color: #e74c3c;"><i class="fas fa-sign-out-alt"></i>
+                                Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body" style="position: relative; z-index: 1;">
+                <div id="scheduleCard" class="card shadow"
+                    style="padding: 25px; border-top: 5px solid #ff7b00; border-radius: 12px; background: rgba(255, 255, 255, 0.95);">
+                    <h2 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">
+                        <i class="fas fa-calendar-week" style="color: #ff7b00;"></i> LỊCH HỌC CỦA TÔI
+                    </h2>
+
+                    <!-- Vùng chứa Lịch học (Nơi JS bơm dữ liệu vào) -->
+                    <div id="studentScheduleContainer" class="schedule-timeline">
+                        <div style="text-align: center; padding: 40px; color: #888;">
+                            <i class="fas fa-spinner fa-spin fa-2x"></i> Đang tải dữ liệu lịch học...
+                        </div>
+                    </div>
+                </div>
+                <!-- KHU VỰC KẾT QUẢ HỌC TẬP (Mặc định ẩn) -->
+                <div id="scoreCard" class="card shadow"
+                    style="padding: 25px; border-top: 5px solid #2ecc71; border-radius: 12px; background: rgba(255, 255, 255, 0.95); display: none;">
+                    <h2 style="color: #2c3e50; text-align: center; margin-bottom: 20px;">
+                        <i class="fas fa-star" style="color: #f1c40f;"></i> KẾT QUẢ HỌC TẬP
+                    </h2>
+                    <div id="scoreCardsWrapper" style="display: grid; gap: 15px;">
+                        <!-- JS sẽ bơm các thẻ điểm vào đây -->
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- KHU VỰC LÀM ĐƠN (Mặc định ẩn) -->
+            <div id="studentsRequestContainer" class="card shadow"
+                style="padding: 30px; border-top: 5px solid #3498db; border-radius: 12px; background: #fff; display: none;">
+                <h2 style="color: #2c3e50; text-align: center; margin-bottom: 30px; font-weight: 800;">
+                    <i class="fas fa-file-signature" style="color: #3498db;"></i> GỬI YÊU CẦU / LÀM ĐƠN
+                </h2>
+
+                <form id="studentRequestForm" onsubmit="submitStudentRequest(event)">
+
+                    <!-- Hàng 1: Loại đơn -->
+                    <div class="req-form-group">
+                        <label class="req-form-label">Loại đơn muốn gửi <span>*</span></label>
+                        <select id="reqType" class="req-form-control" required onchange="handleRequestTypeChange()">
+                            <option value="">-- Vui lòng chọn loại đơn --</option>
+                            <option value="Đơn xin vắng học">Đơn xin vắng học</option>
+                            <option value="Đơn xin phúc khảo điểm">Đơn xin phúc khảo điểm</option>
+                            <option value="Đơn xin kiểm tra khoản đóng phí">Đơn xin kiểm tra khoản đóng phí</option>
+                        </select>
+                    </div>
+
+                    <!-- KHU VỰC ẨN: Chỉ hiện khi chọn "Đơn xin vắng học" -->
+                    <div id="scheduleSelectGroup" class="req-form-group"
+                        style="display: none; background: #e8f4f8; padding: 15px; border-radius: 8px; border-left: 4px solid #3498db;">
+                        <label class="req-form-label" style="color:#2980b9;">Chọn buổi học muốn xin vắng
+                            <span>*</span></label>
+                        <select id="reqSchedule" class="req-form-control" style="border-color: #3498db;">
+                            <option value="">-- Đang tải lịch học của bạn... --</option>
+                        </select>
+                        <small style="color: #7f8c8d; display: block; margin-top: 8px; font-style: italic;">
+                            <i class="fas fa-info-circle"></i> Chỉ hiển thị các buổi học sắp diễn ra. Hệ thống sẽ tự
+                            động chuyển đơn này đến Admin và Giáo viên phụ trách môn học.
+                        </small>
+                    </div>
+
+                    <!-- Thông báo động -->
+                    <div id="reqNotice"
+                        style="margin-bottom: 25px; font-size: 14px; font-weight: 600; font-style: italic; min-height: 20px;">
+                    </div>
+
+                    <!-- Hàng 3: Thông tin cá nhân (Grid) -->
+                    <div class="req-grid-3">
+                        <div>
+                            <label class="req-form-label">Họ và Tên <span>*</span></label>
+                            <!-- Đã bỏ readonly để học sinh tự nhập -->
+                            <input type="text" id="reqStudentName" class="req-form-control" required
+                                placeholder="Nhập họ và tên...">
+                        </div>
+                        <div>
+                            <label class="req-form-label">Ngày làm đơn</label>
+                            <!-- Chỉ để ngày hiển thị mờ, tự động lấy ngày hôm nay -->
+                            <input type="text" id="reqDate" class="req-form-control" readonly
+                                style="color: #e74c3c; font-weight: bold;">
+                        </div>
+                        <div>
+                            <label class="req-form-label">Lớp học <span>*</span></label>
+                            <input type="text" id="reqClass" class="req-form-control" required
+                                placeholder="Nhập lớp học...">
+                        </div>
+                    </div>
+
+                    <!-- Hàng 4: Nội dung -->
+                    <div class="req-form-group">
+                        <label class="req-form-label">Nội dung trình bày <span>*</span></label>
+                        <textarea id="reqContent" class="req-form-control" required rows="6"
+                            placeholder="Yêu cầu ghi rõ nội dung cần trình bày..."></textarea>
+                    </div>
+
+                    <!-- Nút Submit -->
+                    <div style="text-align: right; margin-top: 30px;">
+                        <button type="submit"
+                            style="background: #3498db; color: white; padding: 14px 35px; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); transition: all 0.3s;">
+                            <i class="fas fa-paper-plane"></i> GỬI ĐƠN NGAY
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- ========================================== -->
+            <!-- KHUNG: XEM LỊCH SỬ ĐƠN TỪ (TAB MỚI) -->
+            <!-- ========================================== -->
+            <div id="viewRequestsContainer" style="display: none; padding: 20px;">
+                <div class="card shadow"
+                    style="padding: 25px; border-top: 5px solid #ff7b00; border-radius: 12px; background: rgba(255, 255, 255, 0.95);">
+                    <h3
+                        style="color: #2c3e50; margin-bottom: 20px; border-bottom: 2px dashed #ffe0c2; padding-bottom: 10px; font-size: 18px;">
+                        <i class="fas fa-history" style="color: #ff7b00;"></i> TIẾN ĐỘ XỬ LÝ ĐƠN CỦA TÔI
+                    </h3>
+
+                    <div class="table-responsive">
+                        <table class="table text-center" style="width: 100%; border-collapse: collapse;">
+                            <thead style="background-color: #f8fafc; color: #2c3e50; border-bottom: 2px solid #ff7b00;">
+                                <tr>
+                                    <th style="padding: 12px; width: 12%;">THỜI GIAN</th>
+                                    <th style="padding: 12px; width: 18%;">LOẠI ĐƠN</th>
+                                    <th style="padding: 12px; width: 25%;">NỘI DUNG</th>
+                                    <th style="padding: 12px; width: 15%;">TRẠNG THÁI</th>
+                                    <th style="padding: 12px; width: 30%;">PHẢN HỒI TỪ TRUNG TÂM</th>
+                                </tr>
+                            </thead>
+                            <tbody id="requestHistoryBody">
+                                <tr>
+                                    <td colspan="5" style="padding: 30px; color: #7f8c8d;">
+                                        <i class="fas fa-spinner fa-spin"></i> Đang tải dữ liệu...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- THẢM ĐEN MOBILE -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+
+    <!-- KỊCH BẢN (SCRIPTS) PHẢI NẰM DƯỚI CÙNG -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/hocsinh.js"></script>
+    <script src="../../js/auth.js"></script>
+</body>
+
+</html>

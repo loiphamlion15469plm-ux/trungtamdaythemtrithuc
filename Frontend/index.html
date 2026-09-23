@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trung Tâm Dạy Thêm Trí Thức</title>
+
+    <!-- Import Font Nunito cho chữ đẹp hơn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+    <!-- Link file CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <!-- THANH MENU HOÀN CHỈNH -->
+<div class="navbar">
+    <div class="logo">
+        <h1>Trung Tâm <span>Trí Thức</span></h1>
+    </div>
+
+    <!-- Nút 3 gạch cho Mobile -->
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <!-- 5 Mục Menu (Gộp cả nút Đăng Nhập vào đây để hiện trên Mobile) -->
+    <div class="menu">
+        <ul>
+            <li><a href="#" class="active">Trang Chủ</a></li>
+            <li><a href="#gioi-thieu">Giới Thiệu</a></li>
+            <li><a href="#giao-vien">Giáo Viên</a></li>
+            <li><a href="#van-de">VẤN ĐỀ</a></li>
+            <li><a href="#">Bảng Vàng Ranking</a></li>
+            
+            <!-- ĐÂY LÀ CÁI NÚT ĐÃ ĐƯỢC BẮC CẦU BAY SANG TRANG AUTH.HTML -->
+            <li class="mobile-login">
+                <a href="html/auth.html" style="text-decoration: none;">
+                    <button class="btn-login">Đăng Nhập</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- KHUNG QUẢNG CÁO NÚI RỪNG CHẬP CHÙNG 3D -->
+<section class="notice-board-section">
+    <!-- Phông nền thiên nhiên trang trí -->
+    <div class="decor-mountain mountain-1"></div>
+    <div class="decor-mountain mountain-2"></div>
+    <div class="decor-mountain mountain-3"></div>
+    <div class="decor-icon tree-left">🌲</div>
+    <div class="decor-icon tree-right">🌲</div>
+    <div class="decor-icon cloud-1">☁️</div>
+    <div class="decor-icon cloud-2">☁️</div>
+
+    <!-- Vùng chứa Banner -->
+    <div class="notice-board-container">
+        <img src="images/bg-images.png" alt="Khuyến mãi 10%" class="notice-image active">
+        <img src="images/bg-quangcao1.jpg" alt="Quảng cáo 1" class="notice-image">
+        <img src="images/bg-quangcao2.jpg" alt="Quảng cáo 2" class="notice-image">
+
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+</section>
+
+  
+          <div class="courses-container">
+            <!-- KHU VỰC KHÓA HỌC (Bọc toàn bộ) -->
+<section class="courses-section">
+
+    <!-- 1. TIÊU ĐỀ NẰM TRÊN CÙNG -->
+    <div class="courses-header">
+        <h2 class="section-title">Các Khóa Học Tại <span class="text-orange">Trung Tâm Dạy Thêm Trí Thức</span></h2>
+        <p class="subtitle">Chương trình đào tạo chuẩn, bám sát năng lực học sinh từ lớp 6 - 9</p>
+    </div>
+
+    <!-- 2. KHUNG CHỨA 5 MÔN HỌC (Khung này mới làm tụi nó nằm ngang) -->
+    <div class="courses-container">
+        
+        <!-- KHỐI 1: TOÁN -->
+        <div class="course-card">
+            <img src="images/bg-toanhoc.jpg" alt="Toán Học" class="course-img">
+            <div class="course-content">
+                <h3>Toán Học</h3>
+                <p class="price">500.000 VNĐ / Tháng</p>
+                <p class="status">Sĩ số: 0/30 <span class="available">(Còn 30 chỗ)</span></p>
+                <button class="btn-register">Đăng ký ngay</button>
+            </div>
+        </div>
+
+        <!-- KHỐI 2: VĂN -->
+        <div class="course-card">
+            <img src="images/bg-vanhoc.jpg" alt="Văn Học" class="course-img">
+            <div class="course-content">
+                <h3>Văn Học</h3>
+                <p class="price">500.000 VNĐ / Tháng</p>
+                <p class="status">Sĩ số: 0/30 <span class="available">(Còn 30 chỗ)</span></p>
+                <button class="btn-register">Đăng ký ngay</button>
+            </div>
+        </div>
+
+        <!-- KHỐI 3: ANH -->
+        <div class="course-card">
+            <img src="images/bg-anhvan.jpg" alt="Tiếng Anh" class="course-img">
+            <div class="course-content">
+                <h3>Tiếng Anh</h3>
+                <p class="price">500.000 VNĐ / Tháng</p>
+                <p class="status">Sĩ số: 0/30 <span class="available">(Còn 30 chỗ)</span></p>
+                <button class="btn-register">Đăng ký ngay</button>
+            </div>
+        </div>
+
+        <!-- KHỐI 4: LÝ -->
+        <div class="course-card">
+            <img src="images/bg-vatly.jpg" alt="Vật Lý" class="course-img">
+            <div class="course-content">
+                <h3>Vật Lý</h3>
+                <p class="price">500.000 VNĐ / Tháng</p>
+                <p class="status">Sĩ số: 0/30 <span class="available">(Còn 30 chỗ)</span></p>
+                <button class="btn-register">Đăng ký ngay</button>
+            </div>
+        </div>
+
+      <!-- KHỐI 5: HÓA -->
+        <div class="course-card">
+            <img src="images/bg-hoahoc.jpg" alt="Hóa Học" class="course-img">
+            <div class="course-content">
+                <h3>Hóa Học</h3>
+                <p class="price">500.000 VNĐ / Tháng</p>
+                <p class="status">Sĩ số: 0/30 <span class="available">(Còn 30 chỗ)</span></p>
+                <button class="btn-register">Đăng ký ngay</button>
+            </div>
+        </div>
+
+        <!-- KHỐI 6: KHÓA KÈM 3-4 HS -->
+        <div class="course-card">
+            <img src="images/bg-khoakem.png" alt="Khóa kèm 3-4 học sinh" class="course-img">
+            <div class="course-content">
+                <h3>Khóa Kèm 3-4 HS</h3>
+                <p class="price">1tr - 1tr2 / Tháng / Môn</p>
+                <p class="status">Sĩ số: 0/4 <span class="available">(Còn 4 chỗ)</span></p>
+                <button class="btn-register">Đăng ký ngay</button>
+            </div>
+        </div>
+
+    </div> <!-- ĐÓNG VÙNG CHỨA CONTAINER (Ép Khối 5 và 6 nằm ngang hàng) -->
+</section> <!-- ĐÓNG KHU VỰC KHÓA HỌC -->
+<!-- ĐƯỜNG SÓNG CAM CHUYỂN GIAO MỀM MẠI -->
+    <svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#f97316" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,192C384,171,480,117,576,112C672,107,768,149,864,165.3C960,181,1056,171,1152,144C1248,117,1344,75,1392,53.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+
+    <!-- MỤC TIÊU 2: KHÓA HỌC DÀNH CHO AI -->
+    <section id="gioi-thieu" class="target-audience">
+        <h2 class="section-title">Khóa học này <span class="text-orange">dành cho ai?</span></h2>
+        <div class="audience-container">
+            <!-- Cột trái: Ảnh và Badge -->
+            <div class="audience-left">
+                <!-- Đã chèn đúng tên ảnh bg-giaoviendaythem của bạn -->
+                <img src="images/bg-giaoviendaythem.jpg" alt="Giáo viên dạy thêm" class="audience-img">
+                <div class="audience-badge">
+                    Vươn tầm thành công với cùng <span>Trung Tâm Trí Thức</span>
+                </div>
+            </div>
+            <!-- Cột phải: 4 mục Grid -->
+            <div class="audience-right">
+                <div class="audience-item">
+                    <div class="number-icon">1</div>
+                    <div class="item-content">
+                        <h3> Học sinh</h3>
+                        <p>Khóa học dành cho học sinh từ lớp 6 đến lớp 9, đặc biệt phù hợp với những em mong muốn củng cố kiến thức, nâng cao kết quả học tập và xây dựng nền tảng vững chắc cho những năm học tiếp theo.</p>
+                    </div>
+                </div>
+                <div class="audience-item">
+                    <div class="number-icon">2</div>
+                    <div class="item-content">
+                        <h3>Tất cả trình độ học sinh</h3>
+                        <p>Phù hợp cho mọi cấp độ, từ người mất gốc đến học sinh khá giỏi muốn bứt phá. Mỗi học sinh có một xuất phát điểm khác nhau, vì vậy chúng tôi xây dựng lộ trình học tập phù hợp với từng trình độ, giúp mỗi em tiến bộ theo đúng khả năng và mục tiêu của mình.</p>
+                    </div>
+                </div>
+                <div class="audience-item">
+                    <div class="number-icon">3</div>
+                    <div class="item-content">
+                        <h3>Phụ huynh quan tâm giáo dục</h3>
+                        <p>Đồng hành cùng phụ huynh tìm kiếm môi trường học chất lượng, đáng tin cậy cho con.Cha mẹ trao niềm tin, chúng tôi trao hành trang tri thức – cùng đồng hành để mỗi bước tiến của con hôm nay trở thành nền tảng cho tương lai ngày mai.</p>
+                    </div>
+                </div>
+                <div class="audience-item">
+                    <div class="number-icon">4</div>
+                    <div class="item-content">
+                        <h3>Học sinh thi chuyển cấp</h3>
+                        <p>Trang bị kiến thức vững vàng, rèn luyện tâm lý phòng thi để đạt điểm cao kỳ thi tuyển sinh.Chương trình được xây dựng theo từng giai đoạn, giúp học sinh củng cố kiến thức nền tảng, rèn luyện kỹ năng làm bài, nâng cao tư duy và từng bước làm quen với các dạng đề thi chuyển cấp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+<!-- ==========================================
+     MỤC TẠI SAO CHỌN TRÍ THỨC (BỐ CỤC 2 CỘT)
+     ========================================== -->
+<section id="giao-vien" class="why-choose-us">
+    
+    <!-- CỘT TRÁI: HÌNH ẢNH & BOX NỔI -->
+    <div class="why-image-col">
+        <!-- Đường dẫn ảnh đã được sửa để trỏ đúng vào thư mục images -->
+        <img src="images/bg-giaovientamhuyet.jpg" alt="Giáo viên tâm huyết" class="main-image">
+        
+        <!-- Box trắng nổi đè lên góc dưới của ảnh -->
+        <div class="floating-box">
+            <p>Vươn tầm thành công cùng</p>
+            <h4>Trung Tâm Trí Thức</h4>
+        </div>
+    </div>
+
+    <!-- CỘT PHẢI: NỘI DUNG (GIỮ NGUYÊN CHỮ VÀ ICON CỦA BẠN) -->
+    <div class="why-content-col">
+        <!-- Khối Tiêu đề -->
+        <div class="why-header">
+            <h2><span>Tại sao ?</span> nên chọn Trung Tâm Dạy Thêm TRÍ THỨC</h2>
+        
+            <p>Chúng tôi khác biệt vì hiểu thứ bạn cần</p>
+        </div>
+
+        <!-- Khối 4 tính năng -->
+        <div class="features-container">
+            <div class="feature-card">
+                <span class="feature-icon">📚</span>
+                <h3>Chương trình học biên soạn kỹ</h3>
+                <p>Nội dung bám sát SGK, liên tục cập nhật theo định hướng của Bộ GD&ĐT Kiến thức vững vàng,nền tảng vươn xa,củng cố nền tảng và tự tin chinh phục những thử thách mới. Và những mục tiêu mới trong tương lai.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">👨‍🏫</span>
+                <h3>Đội ngũ giáo viên giàu kinh nghiệm</h3>
+                <p>Thầy cô tâm huyết, giỏi chuyên môn, thân thiện và thấu hiểu tâm lý học sinh . Mỗi bài giảng là một tâm huyết, mỗi học sinh là một hành trình đáng trân trọng. Với chuyên môn vững vàng, phương pháp truyền đạt gần gũi và sự thấu hiểu tâm lý lứa tuổi, thầy cô luôn đồng hành để khơi dậy niềm say mê học tập và giúp các em phát huy tiềm năng.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🏅</span>
+                <h3>Phương pháp giảng dạy tối ưu</h3>
+                <p>Học đi đôi với hành, rèn luyện tư duy logic thay vì học vẹt, học thuộc lòng.Học để hiểu, hiểu để vận dụng, vận dụng để trưởng thành. Trung tâm chú trọng rèn luyện tư duy logic, khả năng sáng tạo và kỹ năng giải quyết vấn đề, để mỗi giờ học không chỉ mang đến kiến thức mà còn nuôi dưỡng sự tự tin và tinh thần chủ động.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <h3>Tổ chức lớp học hiệu quả</h3>
+                <p>Mỗi học sinh đều xứng đáng được quan tâm và phát triển theo cách riêng. Quy mô lớp học hợp lý giúp thầy cô theo sát từng em, kịp thời tháo gỡ khó khăn. Củng cố kiến thức còn thiếu và tạo nên môi trường học tập tích cực, hiệu quả.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= PHẦN VẤN ĐỀ ================= -->
+<section id="van-de" class="problem-section">
+    <div class="problem-container">
+        <div class="problem-header">
+            <!-- THÊM DÒNG SPAN NÀY VÀO TRÊN CÙNG -->
+            <span class="badge-noilo">NỖI LO CỦA CHA MẸ</span>
+            
+            <h2>Có Phải Con Bạn Đang<br>Gặp Những Vấn Đề Này?</h2>
+            <p>Học tập sai cách không chỉ làm con mệt mỏi<br>mà còn giết chết sự tự tin sáng tạo của con.</p>
+        </div>
+        
+        <div class="problem-cards">
+            <!-- Thẻ 1 -->
+            <div class="p-card">
+                <div class="p-icon">❗</div>
+                <h3>Học nhiều không hiểu</h3>
+                <p>Làm bài tập máy móc, ghi nhớ vẹt công thức nhưng gặp bài toán lạ, bài toán thực tế là lập tức bỏ cuộc.</p>
+            </div>
+            <!-- Thẻ 2 -->
+            <div class="p-card">
+                <div class="p-icon">💀</div>
+                <h3>Bị mất gốc kéo dài</h3>
+                <p>Hổng kiến thức nền tảng từ lớp dưới dẫn tới chán nản, sợ học, mỗi giờ học Toán đều trở thành nỗi ám ảnh nặng nề.</p>
+            </div>
+            <!-- Thẻ 3 -->
+            <div class="p-card">
+                <div class="p-icon">🧠</div>
+                <h3>Thiếu tư duy độc lập</h3>
+                <p>Không biết cách phân tích vấn đề, luôn thụ động chờ đợi đáp án từ giáo viên hoặc lời giải mẫu có sẵn.</p>
+            </div>
+            <!-- Thẻ 4 -->
+            <div class="p-card">
+                <div class="p-icon">🔀</div>
+                <h3>Tình trạng học lệch</h3>
+                <p>Chỉ chú trọng học mẹo giải đề thi trước mắt mà quên mất việc rèn luyện tư duy logic toàn diện lâu dài.</p>
+            </div>
+            <!-- Thẻ 5 -->
+            <div class="p-card">
+                <div class="p-icon">😞</div>
+                <h3>Áp lực thi cử lớn</h3>
+                <p>Lo lắng căng thẳng quá mức trước các kỳ thi quan trọng như chuyển cấp, thi vào lớp 10 chuyên hay thi đại học.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- ==========================================
+     FOOTER BẢN ĐỒ VÀ LIÊN HỆ (TRÀN VIỀN 100%)
+     ========================================== -->
+<footer class="footer-section">
+    <div class="footer-container">
+        
+        <!-- Cột Nội dung & Liên hệ -->
+        <div class="footer-info">
+            <h2> Trung Tâm Trí Thức  </h2>
+            <p>Kiến tạo tương lai với nền tảng vững chắc.</p>
+            <ul class="contact-list">
+                <li><b>📍 Địa chỉ:</b> Võ Nguyên Giáp , Phường Phước Bình , Tỉnh Đồng Nai </li>
+                <li><b>📞 Hotline:</b> 0973 27 28 21</li>
+                <li><b>✉️ Email:</b> hotro@trithuccenter.edu.vn</li>
+                <li><b>🌐 Website:</b> www.trithuccenter.edu.vn</li>
+            </ul>
+        </div>
+
+        <!-- Cột Bản đồ -->
+<div class="footer-map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1583.046532754264!2d106.96593396296178!3d11.82163491565046!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317369001fc0e1e3%3A0xe9b8cd61cddb2394!2zQuG6o28gQuG6o28!5e1!3m2!1svi!2sus!4v1789244725518!5m2!1svi!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>
+
+    <!-- Dòng Bản quyền cuối trang -->
+    <div class="footer-bottom">
+        <p>© 2026 Trí Thức Center. Đã đăng ký bản quyền.</p>
+    </div>
+</footer>
+
+    <!-- POPUP FORM ĐĂNG KÝ (Mặc định được JS ẩn đi) -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Đăng Ký Khóa Học</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="fullname">Họ và Tên:</label>
+                    <input type="text" id="fullname" name="fullname" required placeholder="Nhập họ và tên...">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số Điện Thoại:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Nhập số điện thoại...">
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+    <label for="grade"><b>Chọn khối lớp:</b></label>
+    <select id="grade" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; font-family: inherit;">
+        <option value="" disabled selected>-- Vui lòng chọn lớp học --</option>
+        <option value="Lớp 6">Lớp 6</option>
+        <option value="Lớp 7">Lớp 7</option>
+        <option value="Lớp 8">Lớp 8</option>
+        <option value="Lớp 9">Lớp 9</option>
+    </select>
+</div>
+                <div class="form-group">
+                    <label for="course">Khóa học đăng ký:</label>
+                    <input type="text" id="course" name="course" readonly> 
+                </div>
+                <button type="submit" class="btn-submit">Gửi Thông Tin</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gọi file JS -->
+    <script src="./js/app.js"></script>
+</div>
+<!-- BẢNG THÔNG BÁO THÀNH CÔNG (PHIÊN BẢN PREMIUM) -->
+<div id="customSuccessModal" class="custom-modal-overlay">
+    <div class="custom-modal-content premium-modal">
+        <!-- Icon Check xanh xịn sò bằng SVG -->
+        <div class="premium-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+        <h3 class="premium-title">Đăng Ký Thành Công!</h3>
+        <p id="successMessage" class="premium-text"></p>
+        <button id="closeSuccessBtn" class="btn-premium">Tuyệt vời!</button>
+    </div>
+</div>
+</body>
+</html>

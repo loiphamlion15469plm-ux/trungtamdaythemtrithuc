@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác Thực - Trung Tâm Trí Thức</title>
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        
+        <!-- FORM ĐĂNG NHẬP -->
+        <div class="form-box login-box" id="loginForm">
+            <h2>Đăng Nhập</h2>
+            <form id="logForm">
+                <select id="loginRole" name="role" onchange="checkRole('login')" required>
+                    <option value="" disabled selected>-- Chọn vai trò --</option>
+                    <option value="student">Học sinh</option>
+                    <option value="teacher">Giáo viên</option>
+                    <option value="admin">Quản trị viên (Admin)</option>
+                </select>
+                <input type="text" id="loginMSHS" name="mshs" placeholder="Mã số học sinh (MSHS)" class="hidden">
+                <input type="text" id="loginUsername" name="username" autocomplete="username" placeholder="Tên tài khoản" required>
+                
+                <div class="password-wrapper">
+                    <input type="password" id="loginPassword" name="password" autocomplete="current-password" placeholder="Mật khẩu" required>
+                    <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
+                </div>
+                
+                <div class="options">
+                    <label class="remember-label"><input type="checkbox" id="rememberMe"> Nhớ tài khoản</label>
+                    <span class="forgot-pwd" onclick="toggleForm('forgot')">Quên mật khẩu?</span>
+                </div>
+                <p id="loginError" class="error-msg hidden"></p>
+                
+                <button type="submit" class="btn-primary">Đăng Nhập</button>
+                <div class="divider"><span>Hoặc</span></div>
+                <button type="button" class="btn-google">
+                    <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google"> Đăng nhập với Google
+                </button>
+            </form>
+            <p class="switch-form">Chưa có tài khoản? <span onclick="toggleForm('register')">Đăng ký ngay</span></p>
+        </div>
+
+        <!-- FORM ĐĂNG KÝ -->
+        <div class="form-box register-box hidden" id="registerForm">
+            <h2>Tạo Tài Khoản</h2>
+            <form id="regForm">
+                <select id="regRole" name="role" onchange="checkRole('register')" required>
+                    <option value="" disabled selected>-- Chọn vai trò --</option>
+                    <option value="student">Học sinh</option>
+                    <option value="teacher">Giáo viên</option>
+                    <option value="admin">Quản trị viên (Admin)</option>
+                </select>
+                <input type="text" id="regMSHS" name="mshs" placeholder="Mã số học sinh (MSHS)" class="hidden">
+                <input type="text" id="regUsername" name="username" placeholder="Tên tài khoản" required>
+                <input type="tel" id="regPhone" name="phone" placeholder="Số điện thoại" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                
+                <div class="password-wrapper">
+                    <input type="password" id="regPassword" name="password" placeholder="Mật khẩu" required>
+                    <span class="toggle-password" onclick="togglePassword('regPassword', this)">👁️</span>
+                </div>
+                
+                <div class="password-rules">
+                    <p id="rule-length" class="waiting">⚪ Tối thiểu 8 ký tự</p>
+                    <p id="rule-upper" class="waiting">⚪ Ít nhất 1 chữ In Hoa</p>
+                    <p id="rule-number" class="waiting">⚪ Ít nhất 1 chữ số</p>
+                    <p id="rule-special" class="waiting">⚪ Ít nhất 1 ký tự đặc biệt</p>
+                </div>
+
+                <div class="password-wrapper">
+                    <input type="password" id="regConfirmPassword" placeholder="Xác nhận lại mật khẩu" required>
+                    <span class="toggle-password" onclick="togglePassword('regConfirmPassword', this)">👁️</span>
+                </div>
+                <p id="match-msg" class="password-match hidden"></p>
+
+                <button type="submit" class="btn-primary">Đăng Ký</button>
+                <div class="divider"><span>Hoặc</span></div>
+                <button type="button" class="btn-google">
+                    <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google"> Đăng ký bằng Google
+                </button>
+            </form>
+            <p class="switch-form">Đã có tài khoản? <span onclick="toggleForm('login')">Đăng nhập</span></p>
+        </div>
+
+        <!-- FORM QUÊN MẬT KHẨU -->
+        <div class="form-box forgot-box hidden" id="forgotForm">
+            <h2>Khôi Phục Mật Khẩu</h2>
+            <p style="text-align:center; font-size:14px; color:#666; margin-bottom:20px;" id="forgotInstruction">
+                Vui lòng chọn vai trò và nhập thông tin để hệ thống kiểm tra.
+            </p>
+            <form id="forgotPwdForm">
+                <div id="verifySection">
+                    <select id="forgotRole" onchange="checkRole('forgot')" required>
+                        <option value="" disabled selected>-- Chọn vai trò --</option>
+                        <option value="student">Học sinh</option>
+                        <option value="teacher">Giáo viên</option>
+                        <option value="admin">Quản trị viên (Admin)</option>
+                    </select>
+                    <input type="text" id="forgotMSHS" placeholder="Mã số học sinh (MSHS)" class="hidden">
+                    <input type="text" id="forgotUsername" placeholder="Tên tài khoản" required>
+                    <button type="button" class="btn-primary" onclick="verifyAccount()">Xác Minh Tài Khoản</button>
+                </div>
+
+                <div id="resetSection" class="hidden">
+                    <!-- Bảng hiển thị quy tắc -->
+                    <div class="password-rules" style="margin-bottom: 15px;">
+                        <p id="reset-rule-length" class="waiting">⚪ Tối thiểu 8 ký tự</p>
+                        <p id="reset-rule-upper" class="waiting">⚪ Ít nhất 1 chữ In Hoa</p>
+                        <p id="reset-rule-number" class="waiting">⚪ Ít nhất 1 chữ số</p>
+                        <p id="reset-rule-special" class="waiting">⚪ Ít nhất 1 ký tự đặc biệt</p>
+                    </div>
+
+                    <div class="password-wrapper">
+                        <input type="password" id="newPassword" placeholder="Mật khẩu mới"required>
+                        <span class="toggle-password" onclick="togglePassword('newPassword', this)">👁️</span>
+                    </div>
+                    <div class="password-wrapper">
+                        <input type="password" id="confirmNewPassword" placeholder="Xác nhận mật khẩu mới"required>
+                        <span class="toggle-password" onclick="togglePassword('confirmNewPassword', this)">👁️</span>
+                    </div>
+                    <button type="submit" class="btn-primary">Cập Nhật Mật Khẩu</button>
+                </div>
+            </form>
+            <p class="switch-form">Quay lại <span onclick="toggleForm('login')">Đăng nhập</span></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Đổi dòng script cũ thành dòng này -->
+    <script src="../js/auth.js?v=99"></script>
+</body>
+</html>
+    
